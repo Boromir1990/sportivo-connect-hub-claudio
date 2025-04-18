@@ -9,6 +9,7 @@ import { useToast } from '@/hooks/use-toast';
 import { Fingerprint } from 'lucide-react';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 import { useNavigate } from 'react-router-dom';
+import { ErrorTest } from '@/components/test/ErrorTest';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -200,6 +201,10 @@ const LoginPage = () => {
             </div>
           </DialogContent>
         </Dialog>
+        
+        {/* Error test component */}
+        <div className="mt-4"><ErrorTest /></div>
+
       </div>
     </div>
   );
