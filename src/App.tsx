@@ -22,6 +22,8 @@ import UserProfile from '@/pages/UserProfile'
 import NotFound from '@/pages/NotFound'
 import DevSettings from '@/pages/DevSettings'
 import Index from '@/pages/Index'
+import ErrorBoundaryComponent from '@/components/common/ErrorBoundary'
+import { ErrorProvider } from '@/context/ErrorContext'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -35,31 +37,35 @@ const queryClient = new QueryClient({
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider>
-        <AuthProvider>
-          <NotificationProvider>
-            <Toaster position="top-right" />
-            <Routes>
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/" element={<AppLayout />}>
-                <Route index element={<Dashboard />} />
-                <Route path="statistics" element={<Statistics />} />
-                <Route path="calendar" element={<Calendar />} />
-                <Route path="exercises" element={<Exercises />} />
-                <Route path="training-planner" element={<TrainingPlanner />} />
-                <Route path="teams" element={<Teams />} />
-                <Route path="team-members" element={<TeamMembers />} />
-                <Route path="documents" element={<Documents />} />
-                <Route path="medical" element={<Index />} />
-                <Route path="warehouse" element={<Warehouse />} />
-                <Route path="profile" element={<UserProfile />} />
-                <Route path="dev-settings" element={<DevSettings />} />
-                <Route path="*" element={<NotFound />} />
-              </Route>
-            </Routes>
-          </NotificationProvider>
-        </AuthProvider>
-      </ThemeProvider>
+      <ErrorProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <NotificationProvider>
+              <Toaster position="top-right" />
+              <ErrorBoundaryComponent>
+                <Routes>
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/" element={<AppLayout />}>
+                    <Route index element={<Dashboard />} />
+                    <Route path="statistics" element={<Statistics />} />
+                    <Route path="calendar" element={<Calendar />} />
+                    <Route path="exercises" element={<Exercises />} />
+                    <Route path="training-planner" element={<TrainingPlanner />} />
+                    <Route path="teams" element={<Teams />} />
+                    <Route path="team-members" element={<TeamMembers />} />
+                    <Route path="documents" element={<Documents />} />
+                    <Route path="medical" element={<Index />} />
+                    <Route path="warehouse" element={<Warehouse />} />
+                    <Route path="profile" element={<UserProfile />} />
+                    <Route path="dev-settings" element={<DevSettings />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Route>
+                </Routes>
+              </ErrorBoundaryComponent>
+            </NotificationProvider>
+          </AuthProvider>
+        </ThemeProvider>
+      </ErrorProvider>
     </QueryClientProvider>
   )
 }
