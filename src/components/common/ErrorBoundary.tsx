@@ -1,6 +1,6 @@
 import React, { Component, ReactNode } from 'react';
-import { ErrorType } from '../../types/errors';
-import { ErrorDialog } from './ErrorDialog';
+import { ErrorType } from '@/types/errors.ts';
+import ErrorDialog from './ErrorDialog';
 
 interface Props {
   children: ReactNode;
