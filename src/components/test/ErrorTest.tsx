@@ -1,7 +1,7 @@
 import React from 'react';
 import { useError } from '@/context/ErrorContext';
 
-const ErrorTest: React.FC = () => {
+export const ErrorTest: React.FC = () => {
   const { showError } = useError();
 
   const handleClick = () => {
